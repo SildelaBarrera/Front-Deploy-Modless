@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model'; 
@@ -15,7 +15,12 @@ export class ProductService {
 
   constructor() { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl); // Obtén los productos desde el backend
+  getProducts(category?: string): Observable<Product[]> {
+    let params = new HttpParams();
+    if(category){
+      params = params.set('category', category)
+    }
+    return this.http.get<Product[]>(this.apiUrl, { params }); // Obtén los productos desde el backend
   }
+
 }

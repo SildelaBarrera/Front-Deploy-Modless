@@ -4,17 +4,17 @@
       <h3>Categorías</h3>
       <ul class="navbar flex-column">
         <li class="nav-item">
-            <a class="nav-link" href="#">Nueva colección</a>
+            <a class="nav-link" routerLink="/products">Nueva colección</a>
         </li>
  
         <li class="nav-item">
           <button class="tienda" (click)="toggleCategory('clothes')">Tienda</button>
           <ul *ngIf="isCategoryOpen('clothes')" class="nav flex-column ms-3">
-            <li class="nav-item"><a class="nav-link text-white" href="#">Camisetas y tops</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Pantalones y faldas</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Vestidos</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Total look</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#">Accesorios</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Camisetas y tops' }">Camisetas y tops</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Pantalones y faldas'}">Pantalones y faldas</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Vestidos'}">Vestidos</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Total look'}">Total look</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Accesorios'}">Accesorios</a></li>
           </ul>
         </li>
       
