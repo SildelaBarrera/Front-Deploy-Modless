@@ -1,0 +1,80 @@
+.sidebar {
+    position: fixed;   /* Asegura que la sidebar esté fija al lado izquierdo */
+    top: 0;
+    left: -250px; /* Inicialmente fuera de vista */
+    width: 250px;
+    height: 100%;
+    background-color: #343a40;
+    transition: left 0.3s ease; /* Animación suave cuando se abre o cierra */
+    z-index: 1050; /* Sidebar debe estar encima del contenido */
+    overflow-y: auto; /* Para permitir desplazamiento si hay demasiadas categorías */
+  }
+  
+  /* Mostrar la sidebar cuando está abierta */
+  .sidebar-open {
+    left: 0; /* Cuando está abierta, coloca la sidebar en la vista */
+  }
+  
+  /* Botón de abrir/cerrar la sidebar */
+  .btn-sidebar {
+    position: absolute;
+    top: 20px;  /* Ajusta la posición */
+    left: 20px; /* Ajusta la posición */
+    z-index: 2000; /* El botón debe estar encima de la sidebar */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Cambia el color cuando se pasa el mouse sobre el botón */
+  .btn-sidebar:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Ajustes para las categorías */
+  .navbar {
+    width: 230px;
+    padding-left: 0;
+    padding-top: 70px;
+    border: red solid 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-item {
+    border: green solid 1px;
+    width: 180px;
+    list-style: none;
+    padding-left: 10px;
+  }
+  .tienda{
+    text-decoration: none;
+    list-style: none;
+    
+  }
+
+  .nav-link {
+    font-size: 16px;
+    color: #ffffff !important;
+  }
+  
+  /* Estilo de botones dentro de la sidebar */
+  .nav-item button {
+    width: 100%;
+    text-align:start;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Cambia el fondo al pasar el ratón */
+  /* .nav-item button:hover {
+    background-color: #555555;
+  } */

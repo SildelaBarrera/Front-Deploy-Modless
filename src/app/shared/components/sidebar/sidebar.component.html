@@ -1,0 +1,37 @@
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar bg-dark text-white p-3" [ngClass]="{'sidebar-open': isSidebarOpen}">
+      <h3>Categorías</h3>
+      <ul class="navbar flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Nueva colección</a>
+        </li>
+ 
+        <li class="nav-item">
+          <button class="tienda" (click)="toggleCategory('clothes')">Tienda</button>
+          <ul *ngIf="isCategoryOpen('clothes')" class="nav flex-column ms-3">
+            <li class="nav-item"><a class="nav-link text-white" href="#">Camisetas y tops</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Pantalones y faldas</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Vestidos</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Total look</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#">Accesorios</a></li>
+          </ul>
+        </li>
+      
+        <li class="nav-item">
+            <a class="nav-link" href="#">ABOUT US</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">CONTACT</a>
+        </li>
+      </ul>
+    </div>
+  
+  
+    <button class="btn btn-sidebar btn-primary" (click)="toggleSidebar()">☰</button>
+  
+    <!-- Contenido principal -->
+    <div class="main-content ms-3">
+      
+    </div>
+  </div>
