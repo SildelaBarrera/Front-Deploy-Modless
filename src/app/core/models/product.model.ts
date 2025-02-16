@@ -8,7 +8,7 @@ export interface Product {
     price: number;
     composition: string;
     garment_care: string;
-    image_main: string;
+    image?: string;
     variants: Variant [];
     
   }

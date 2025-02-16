@@ -1,0 +1,53 @@
+.header{
+    height: 4vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.text{
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 1px;
+}
+h6{
+    /* border: red solid 2px; */
+    margin-bottom: -px;
+    color:white;
+    font-size: small;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;   
+}
+.subheader{
+    height: 7vh;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+.icons{
+    border: blue solid 2px;
+    display: flex;
+    
+}
+.btn{
+    height: 30px;
+    width: 40px;
+    border: transparent;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content:center; 
+}
+.icon-auto {
+    mix-blend-mode: difference;
+    color: rgba(255, 255, 255, 0.801);
+}

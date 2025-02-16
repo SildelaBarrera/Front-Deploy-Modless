@@ -1,0 +1,24 @@
+
+.landing-page{
+    border: blue 3px solid;
+    height: 96vh;
+    width: 100vw;
+    top: 29px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url("/portada.jpg");
+    background-size: cover;  
+    background-position: center;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal; 
+}
+
+.logo{
+    height: 50px;
+    position: relative;
+    top:50px;
+}

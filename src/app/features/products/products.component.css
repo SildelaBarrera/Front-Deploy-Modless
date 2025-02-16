@@ -1,0 +1,13 @@
+.products-page {
+    padding: 200px; 
+    border: red solid 2px;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .products{
+    border: red solid 2px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
