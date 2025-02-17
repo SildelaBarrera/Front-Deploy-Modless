@@ -1,0 +1,84 @@
+.color-options button, .size-options button {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .selected {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .color-options button.selected {
+    border: 2px solid #007bff;
+    background-color: #e9f7ff;
+  }
+  
+  .color-options button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .size-options button.selected {
+    border: 2px solid #28a745;
+    background-color: #e9f7e9;
+  }
+  
+  .size-options button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .carousel-inner img {
+    max-height: 400px;
+    object-fit: contain;
+  }
+  
+  /* Contenedor del Producto */
+  .product-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .product-price {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-top: 10px;
+  }
+  
+  .product-description {
+    margin-top: 20px;
+  }
+  
+  /* Botón de Comprar */
+  button.btn-primary {
+    margin-top: 30px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  }
+
+  .thumbnail-gallery {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: auto;
+  }
+  
+  .thumbnail-gallery .miniatura {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .thumbnail-gallery .miniatura:hover {
+    border-color: #007bff;
+  }
+  
+  /* Resaltar la imagen seleccionada */
+  .carousel-inner img {
+    max-height: 400px;
+    object-fit: contain;
+  }

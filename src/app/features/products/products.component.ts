@@ -2,13 +2,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ProductService } from '../../core/services/product.service'; // Asegúrate de importar el servicio
 import { Product } from '../../core/models/product.model'; // Asegúrate de importar el modelo de Producto
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,  // Si es un componente standalone
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })

@@ -10,5 +10,5 @@ export interface Variant {
     size: Size;  // Talla (S, M, L, etc.)
     color: Color;  // Color de la variante
     stock: Stock;  // Información de stock
-    images: VariantImage[];  // Imágenes asociadas a la variante
+    images: VariantImage;  // Imágenes asociadas a la variante
   }

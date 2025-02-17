@@ -36,9 +36,9 @@
   
   /* Ajustes para las categorías */
   .navbar {
-    width: 230px;
+    width: 210px;
     padding-left: 0;
-    padding-top: 70px;
+    padding-top: 90px;
     border: red solid 2px;
     display: flex;
     flex-direction: column;

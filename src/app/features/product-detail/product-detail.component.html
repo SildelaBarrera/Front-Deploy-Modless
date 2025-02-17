@@ -1,0 +1,94 @@
+<!-- <div *ngIf="product">
+  <h1>{{ product.name }}</h1>
+  <h3>Precio: {{ product.price | currency }}</h3>
+
+  <img [src]="selectedImage" alt="{{ product.name }}" width="200">
+
+  <h4>Selecciona un color:</h4>
+  <div class="color-options">
+    <button *ngFor="let color of product.colors" 
+            [ngClass]="{'selected': selectedColor.color === color.color}"
+            (click)="selectedColor = color; selectedSize = ''; updateImage()">
+      {{ color.color }}
+    </button>
+  </div>
+
+  <h4>Selecciona una talla:</h4>
+  <div class="size-options">
+    <button *ngFor="let size of selectedColor?.sizes"
+            [ngClass]="{'selected': selectedSize === size.size}"
+            (click)="selectedSize = size.size; updateImage()">
+      {{ size.size }}
+    </button>
+  </div>
+
+  <button (click)="addToCart()">🛒 Agregar al carrito</button>
+</div>
+ -->
+
+ <div class="container py-5">
+  <div class="row">
+    <!-- Imagen principal del Producto -->
+    <div class="col-md-6">
+      <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img [src]="selectedImage" class="d-block w-100" alt="{{ product?.name }}">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      
+      <!-- Miniaturas de imagenes de las variantes -->
+      <div class="thumbnail-gallery mt-3">
+        <div *ngFor="let color of product?.colors">
+          <div *ngFor="let size of color.sizes">
+            <img 
+              *ngIf="size.image" 
+              [src]="size.image" 
+              alt="Imagen variante {{ size.size }} {{ color.color }}"
+              class="img-thumbnail miniatura"
+              (click)="selectedImage = size.image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detalles del Producto -->
+    <div class="col-md-6">
+      <h2 class="product-title">{{ product?.name }}</h2>
+      <p class="product-price">{{ product?.price }} €</p>
+      <p class="product-description">{{ product?.description }}</p>
+
+      <!-- Elección de Color -->
+      <h4>Selecciona un color:</h4>
+      <div class="color-options">
+        <button *ngFor="let color of product?.colors"
+                [ngClass]="{'selected': selectedColor.color === color.color}"
+                (click)="selectedColor = color; selectedSize = ''; updateImage()">
+          {{ color.color }}
+        </button>
+      </div>
+
+      <!-- Elección de Talla -->
+      <h4>Selecciona una talla:</h4>
+      <div class="size-options">
+        <button *ngFor="let size of selectedColor?.sizes"
+                [ngClass]="{'selected': selectedSize === size.size}"
+                (click)="selectedSize = size.size; updateImage()">
+          {{ size.size }}
+        </button>
+      </div>
+
+      <!-- Botón de Comprar -->
+      <button class="btn btn-primary btn-lg" (click)="addToCart()">Añadir al carrito</button>
+    </div>
+  </div>
+</div>

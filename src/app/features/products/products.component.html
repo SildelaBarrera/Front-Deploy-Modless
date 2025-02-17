@@ -5,11 +5,12 @@
       <div class="col-md-4 mb-4" *ngFor="let product of products ">
         <div class="card shadow-sm">
           <!-- Imagen del producto -->
-          <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
+          <button [routerLink]="['/products', product.id_product]"> <!-- Enlace a la página de detalles con el id_product -->
+            <img [src]="product.image" [alt]="product.name" class="card-img-top">
+          </button>
   
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.description }}</p>
   
             <div class="d-flex justify-content-between align-items-center">
               <p class="price mb-0" style="font-size: 1.2em; color: #007bff;">
