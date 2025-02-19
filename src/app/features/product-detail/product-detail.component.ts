@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../core/services/product.service';
+import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 
@@ -15,10 +16,14 @@ export class ProductDetailComponent {
   selectedColor: any = null;
   selectedSize: string = '';
   selectedImage: string = '';
-  
+  selectedVariant: any = null;  
+  id_user: number = 1;
+
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
+
   ) {}
 
   ngOnInit(): void {
@@ -48,24 +53,37 @@ export class ProductDetailComponent {
   }
   groupByColor(data: any[]) {
     const colorMap: { [key: string]: any } = {};
-
+  
     data.forEach((variant) => {
+      console.log('Procesando variante:', variant);
+  
+      // Verificar si variant tiene id_color e id_size
+      if (!variant.id_color || !variant.id_size) {
+        console.error(`Faltan id_color o id_size en la variante:`, variant);
+      }
+  
+      // Crear un mapa para agrupar variantes por color
       if (!colorMap[variant.color]) {
         colorMap[variant.color] = {
           color: variant.color,
           sizes: []
         };
       }
+  
+      // Asegúrate de incluir id_color y id_size
       colorMap[variant.color].sizes.push({
+        id_variant: variant.id_variant,
         size: variant.size,
         stock: variant.stock,
-        image: variant.image
+        image: variant.image,
+        id_color: variant.id_color,  // Asegúrate de incluir id_color
+        id_size: variant.id_size     // Asegúrate de incluir id_size
       });
     });
-
+  
+    console.log('Mapeo de colores:', colorMap);
     return Object.values(colorMap);
   }
-
   // Cambiar la imagen al seleccionar una talla
   updateImage() {
     const selectedVariant = this.selectedColor.sizes.find(
@@ -79,17 +97,40 @@ export class ProductDetailComponent {
       alert('Por favor, selecciona un color y una talla antes de comprar.');
       return;
     }
-
-    const selectedVariant = {
-      productId: this.product.id_product,
-      name: this.product.name,
-      price: this.product.price,
-      color: this.selectedColor.color,
-      size: this.selectedSize,
-      image: this.selectedImage
+    console.log('Producto:', this.product);
+    console.log('Color seleccionado:', this.selectedColor);
+    console.log('Talla seleccionada:', this.selectedSize);
+  
+    // Buscar la id_variant correspondiente a la combinación seleccionada
+    const selectedVariant = this.selectedColor.sizes
+      .find((size: any) => size.size === this.selectedSize);
+  
+    if (!selectedVariant) {
+      alert('Variante no encontrada');
+      return;
+    }
+  
+    // Crear el objeto con la información del producto a agregar
+    const productToAdd = {
+      id_user: 1,  // Aquí puedes usar el id del usuario si está autenticado
+      id_product: this.product.id_product,
+      id_color: selectedVariant.id_color,  // Ahora estamos usando el id_color
+      id_size: selectedVariant.id_size,    // Ahora estamos usando el id_size
+      quantity: 1
     };
-
-    console.log('Producto agregado al carrito:', selectedVariant);
-    alert('Producto agregado al carrito.');
+  
+    console.log('Producto a agregar al carrito:', productToAdd);
+  
+    // Llamar al servicio de carrito para agregar el producto
+    this.cartService.addToCart(productToAdd).subscribe(
+      (response) => {
+        console.log('Producto agregado al carrito:', response);
+        alert('Producto agregado al carrito.');
+      },
+      (error) => {
+        console.error('Error al agregar el producto al carrito:', error);
+        alert('Hubo un error al agregar el producto al carrito.');
+      }
+    );
   }
 }

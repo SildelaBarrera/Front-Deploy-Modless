@@ -67,23 +67,22 @@
       <p class="product-price">{{ product?.price }} €</p>
       <p class="product-description">{{ product?.description }}</p>
 
-      <!-- Elección de Color -->
       <h4>Selecciona un color:</h4>
       <div class="color-options">
-        <button *ngFor="let color of product?.colors"
-                [ngClass]="{'selected': selectedColor.color === color.color}"
-                (click)="selectedColor = color; selectedSize = ''; updateImage()">
-          {{ color.color }}
+        <button *ngFor="let variant of product.colors" 
+                [ngClass]="{'selected': selectedColor.color === variant.color}"
+                (click)="selectedColor = variant; selectedSize = ''; updateImage()">
+          {{ variant.color }}
         </button>
       </div>
+      
 
-      <!-- Elección de Talla -->
       <h4>Selecciona una talla:</h4>
       <div class="size-options">
         <button *ngFor="let size of selectedColor?.sizes"
-                [ngClass]="{'selected': selectedSize === size.size}"
-                (click)="selectedSize = size.size; updateImage()">
-          {{ size.size }}
+          [ngClass]="{'selected': selectedSize === size.size}"
+          (click)="selectedSize = size.size; updateImage()">
+        {{ size.size }}
         </button>
       </div>
 

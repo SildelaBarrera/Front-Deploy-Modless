@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <h2>Formulario de Envío</h2>
+    <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group mb-3">
+        <label for="name">Nombre Completo</label>
+        <input type="text" id="name" formControlName="name" class="form-control" required />
+        <div *ngIf="shippingForm.get('name')?.invalid && shippingForm.get('name')?.touched" class="text-danger">
+          El nombre completo es obligatorio.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="address">Dirección</label>
+        <input type="text" id="address" formControlName="address" class="form-control" required />
+        <div *ngIf="shippingForm.get('address')?.invalid && shippingForm.get('address')?.touched" class="text-danger">
+          La dirección es obligatoria.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="city">Ciudad</label>
+        <input type="text" id="city" formControlName="city" class="form-control" required />
+        <div *ngIf="shippingForm.get('city')?.invalid && shippingForm.get('city')?.touched" class="text-danger">
+          La ciudad es obligatoria.
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="province">Provincia</label>
+        <input type="text" id="province" formControlName="province" class="form-control" required />
+        <div *ngIf="shippingForm.get('province')?.invalid && shippingForm.get('province')?.touched" class="text-danger">
+          La provincia es obligatoria.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="postal_code">Código Postal</label>
+        <input type="text" id="postal_code" formControlName="postal_code" class="form-control" required />
+        <div *ngIf="shippingForm.get('postal_code')?.invalid && shippingForm.get('postal_code')?.touched" class="text-danger">
+          El código postal es obligatorio.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="country">País</label>
+        <input type="text" id="country" formControlName="country" class="form-control" required />
+        <div *ngIf="shippingForm.get('country')?.invalid && shippingForm.get('country')?.touched" class="text-danger">
+          El país es obligatorio.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="phone">Teléfono</label>
+        <input type="text" id="phone" formControlName="phone" class="form-control" required />
+        <div *ngIf="shippingForm.get('phone')?.invalid && shippingForm.get('phone')?.touched" class="text-danger">
+          El teléfono es obligatorio.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="shippingForm.invalid">
+        Enviar
+      </button>
+    </form>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+  </div>
+  
