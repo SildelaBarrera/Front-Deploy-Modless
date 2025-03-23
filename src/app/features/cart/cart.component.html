@@ -1,32 +1,65 @@
 <div class="cart-container">
-  <h1>Tu Carrito</h1>
+  <h1 class="cart-title">CESTA</h1>
   
-  <!-- Mostrar un mensaje si el carrito está vacío -->
-  <div *ngIf="cartItems.length === 0">
-    <p>Tu carrito está vacío. ¡Agrega algunos productos!</p>
+  <!-- Carrito de productos -->
+  <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-items">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <div class="cart-item-info">
+        <img [src]="item.image || 'default-image.jpg'" alt="Imagen del producto" class="cart-item-img" />
+        <div class="cart-item-details">
+          <h3 class="product-name">{{ item.name }}</h3>
+          <p class="product-color">Color: {{ item.color }}</p>
+          <p class="product-size">Tamaño: {{ item.size }}</p>
+          <p class="product-price">{{ item.price }} €</p>
+        </div>
+      </div>
+      
+      <div class="cart-item-actions">
+        <!-- Botones de cantidad -->
+        <div class="quantity-controls">
+          <!-- Botón para disminuir cantidad -->
+          <button class="quantity-btn" (click)="updateQuantity(item.id_cart, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
+          
+          <!-- Mostrar la cantidad actual -->
+          <span class="quantity">{{ item.quantity }}</span>
+        
+          <!-- Botón para aumentar cantidad -->
+          <button class="quantity-btn" (click)="updateQuantity(item.id_cart, item.quantity + 1)">+</button>
+        </div>
+        <!-- Subtotal -->
+        <p class="product-subtotal">{{ item.subtotal }} €</p>
+        <!-- Eliminar producto -->
+        <button class="remove-btn" (click)="removeItemFromCart(item.id_cart)">Eliminar</button>
+      </div>
+    </div>
   </div>
 
-  <!-- Mostrar los productos en el carrito -->
-  <div *ngIf="cartItems.length > 0">
-    <div class="cart-item" *ngFor="let item of cartItems">
-      <div class="cart-item-image">
-        <img [src]="item.image" alt="{{ item.name }}">
-      </div>
-      <div class="cart-item-details">
-        <h3>{{ item.name }}</h3>
-        <p><strong>Color:</strong> {{ item.color }}</p>
-        <p><strong>Talla:</strong> {{ item.size }}</p>
-        <p><strong>Precio:</strong> ${{ item.price }}</p>
-        <p><strong>Cantidad:</strong>
-          <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item.id_variant, item.quantity)" min="1">
-        </p>
-        <button (click)="removeItemFromCart(item.id_cart)">Eliminar</button>
-      </div>
+  <!-- Si no hay productos en el carrito -->
+  <ng-template #emptyCart>
+    <p class="empty-cart-message">Tu carrito está vacío. ¡Añade productos para comenzar!</p>
+  </ng-template>
+
+  <!-- Resumen del carrito -->
+  <div *ngIf="cartItems.length > 0" class="cart-summary">
+    <div class="subtotal">
+      <span>Subtotal:</span>
+      <span class="subtotal-amount">{{ subtotal }} €</span>
     </div>
 
-    <div class="cart-summary">
-      <p><strong>Total:</strong> ${{ totalAmount }}</p>
-      <button routerLink="/shipping" class="checkout-btn">Proceder con el pago</button>
-    </div>
+    <!-- Descuento -->
+    <!-- <div class="discount-section">
+      <input [(ngModel)]="discountCode" placeholder="Código de descuento" class="discount-input" />
+      <button class="apply-discount-btn" (click)="applyDiscount()">Aplicar</button>
+    </div> -->
+
+    <!-- <div *ngIf="discountError" class="discount-error">¡Código de descuento inválido!</div> -->
+
+    <!-- Total -->
+    <!-- <div class="total">
+      <span>Total:</span>
+      <span class="total-amount">{{ totalAmount}} €</span>
+    </div> -->
+
+    <button class="checkout-btn" (click)="router.navigate(['/shipping'])">Proceder con la compra</button>
   </div>
 </div>

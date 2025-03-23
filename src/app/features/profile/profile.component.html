@@ -1,0 +1,65 @@
+<div class="profile-container">
+  <div *ngIf="isLoading" class="loading">Cargando perfil...</div>
+
+  <div  *ngIf="!isLoading && userProfile.id_user">
+    <div class='perfil'>
+      <h3>PERFIL DE USUARIO</h3>
+      <p><strong>Nombre y apellidos:</strong> {{ userProfile.name }}</p>
+      <p><strong>Email:</strong> {{ userProfile.email }}</p>
+      <p><strong>Teléfono:</strong> {{ userProfile.phone }}</p>
+    <!-- <p><strong>Rol:</strong> {{ userProfile.role }}</p> -->
+    </div>
+    <div class='direccion'>
+      <h3>DIRECCIONES</h3>
+      <ul *ngIf="userProfile.addresses.length > 0; else noAddresses">
+        <li *ngFor="let address of userProfile.addresses">
+          {{ address.address }}, {{ address.city }} ({{ address.postal_code }})
+        </li>
+      </ul>
+      <ng-template #noAddresses><p>No tienes direcciones registradas.</p></ng-template>
+    </div>
+    <div class='ordenes'>
+        <h3>ÓRDENES</h3>
+        <ul *ngIf="userProfile.orders.length > 0; else noOrders">
+          <li *ngFor="let order of userProfile.orders">
+            Pedido #{{ order.id_order }} - {{ order.status }} - {{order.shipping_method}} Total: {{ order.total }} €
+          </li>
+        </ul>
+        <ng-template #noOrders><p>No tienes órdenes registradas.</p></ng-template>
+      </div>
+    </div>
+  </div>
+    <!-- <div class="order-details-container">
+      <h2>Detalles de la Orden</h2>
+    
+      <table>
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orderDetails">
+            <td><img [src]="item.variant_image" width="50"></td>
+            <td>{{ item.variant_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.subtotal }} €</td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <div *ngIf="orderDetails.length > 0">
+        <p><strong>Costes de Envío:</strong> {{ orderDetails[0].shipping_cost }} €</p>
+        <p><strong>Descuento:</strong> -{{ orderDetails[0].discountAmount }} €</p>
+        <p><strong>Total:</strong> {{ orderDetails[0].total }} €</p>
+      </div>
+    </div>
+    
+
+  <div *ngIf="!isLoading && errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div> -->
+

@@ -1,0 +1,67 @@
+
+<script src="https://www.paypal.com/sdk/js?client-id=ASS6LfBbUX3aONqVcU-Q5KNCYwNswPaD-Gb89bt1OfxHPdezaRmWb6FpwgOnyomHzWrRuj7FjIDPQ5yC
+&currency=EUR"></script>
+
+
+<div class="checkout-container">
+  
+  <!-- Izquierda: Dirección y productos -->
+  <div class="left-section">
+    <div class="address-container">
+      <h5>DIRECCIÓN</h5>
+      <p *ngIf="!selectedAddress" class="warning">⚠️ No se encontró dirección guardada.</p>
+      <div *ngIf="selectedAddress" class="address-details">
+        <p>{{ selectedAddress.name }}</p>
+        <p>{{ selectedAddress.address }} - {{ selectedAddress.postal_code }}, {{ selectedAddress.city }} </p>
+        <p>{{ selectedAddress.province }}, {{ selectedAddress.community }} ( {{ selectedAddress.country }} ) </p>
+        <label class="shippment-options">OPCIONES DE ENVÍO</label>
+        
+        <select (change)="onShippingMethodChange($event)" [(ngModel)]="shippingMethod">
+          <option value="punto_pack" [disabled]="!isPickupPointAvailable">Recogida en Punto Pack</option>
+          <option value="domicilio" [disabled]="!isHomeDeliveryAvailable">Envío a domicilio</option>
+        </select>
+        
+      </div>
+      </div>
+    
+    <div class="cart-summary">
+      <h3>RESUMEN DEL PEDIDO</h3>
+      <ul class="cart-items">
+        <p class="item" *ngFor="let item of cartItems">
+          <img src='{{ item.image }}'>
+          <strong>{{ item.name }}</strong> Cantidad: {{ item.quantity }} ({{ item.price }} €)
+        </p>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Derecha: Costos y pago -->
+  <div class="right-section">
+    <h5>FINALIZAR COMPRA</h5>
+    <p><strong>Subtotal:</strong> {{ subtotal }} €</p>
+  
+    <div class="discount-section">
+      <label class="discount-code" for="discount_code">Código de Descuento:</label>
+      <input type="text" id="discount_code" [(ngModel)]="discount_code" placeholder="Ingresa tu código">
+      <button (click)="applyDiscount(discount_code)">Aplicar</button>
+    </div>
+    
+    <p *ngIf="discountAmount > 0"><strong>Descuento:</strong> -{{ discountAmount }} €</p>
+    
+    <div *ngIf="shippingCost !== null">
+      <p><strong>El costo de envío es: </strong> {{ shippingCost }} €</p>
+    </div>
+    
+    <h4 class="total"><strong>Total:</strong> {{ totalPrice }} €</h4>
+    
+    <button (click)="submitOrder()" [disabled]="cartItems.length === 0">
+       Tramitar Pago
+    </button>
+    <div id="paypal-button-container">
+      <script>
+        paypal.Buttons().render("#paypal-button-container");
+    </script>
+    </div>
+  </div>
+</div>
+

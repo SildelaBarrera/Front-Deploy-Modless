@@ -10,9 +10,16 @@ export class CartService {
 
   constructor(private http: HttpClient) {}
 
-  getCart(id_user: number): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl +'/'+ id_user);
+  getCart(id_user: number, discountCode: string = ''): Observable<any> {
+    
+    let url = `http://localhost:3000/api/cart/${id_user}`;
+    console.log("URL del carrito:", url);
+    if (discountCode) {
+      url += `?discount_code=${discountCode}`;
+    }
+    return this.http.get<any>(url);
   }
+
 
   addToCart(cartData: { id_user: number; id_product: number; id_color: number; id_size: number; quantity: number }): Observable<any> {
     return this.http.post<any>(this.apiUrl, cartData);
@@ -23,6 +30,16 @@ export class CartService {
   }
 
   updateQuantity(id_cart: number, quantity: number): Observable<any> {
-    return this.http.put(`http://localhost:3000/api/cart/update/${id_cart}`, { quantity });
+    let url = `http://localhost:3000/api/cart/update/${id_cart}`
+    console.log("URL de actualización:", url); // Verificar en la consola
+    return this.http.put<any>(url, { quantity });
+  }
+
+  applyDiscount(userId: number, discount_code: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/discount`, { id_user: userId, discount_code: discount_code });
+  }
+
+  clearCart(user_id: number) {
+    return this.http.delete(`/api/cart/clear/${user_id}`);
   }
 }

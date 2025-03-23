@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>VERIFICACIÓN DE CORREO ELECTRÓNICO</h2>
+
+  <form class="form" [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
+    <label class="label">Correo electrónico:</label>
+    <input class='input' type="email" formControlName="email" placeholder="Tu correo " required />
+    
+    <label class="label">Codigo de verificación:</label>
+    <input class='input' type="text" formControlName="verificationCode" placeholder="Código" required />
+
+    <button type="submit" [disabled]="verifyForm.invalid || isLoading">Verificar</button>
+  </form>
+
+  <p *ngIf="message">{{ message }} <a routerLink="/auth/login"></a></p>
+</div>

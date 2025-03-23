@@ -1,0 +1,62 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    display: flex; /* Para centrar en toda la pantalla */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Altura mínima de la pantalla */
+    font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0; 
+      font-size: medium;
+      margin-top:100px;
+      border: green solid 2px;
+  }
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+  }
+  .contenedor {
+    max-width: 1060px;
+    border: red solid 2px;
+    padding-top: 30px;
+   
+  }
+  .text1, .text2{
+    width: 50%;
+    text-transform: uppercase;
+  }
+  .image{
+    width:40%;
+    border: blue solid 2px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+   
+  }
+  .photo{
+    max-width: 100%; /* Evita que la imagen se salga del div */
+    max-height: 100%; /* Mantiene la imagen dentro del div */
+    object-fit: contain;
+  }
+  h2, h3 {
+    font-weight: 600;
+    color: #000000;  /* Gris oscuro para los títulos */
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #000000; 
+    line-height: 1.8 /* Gris más claro para el texto */
+  }
+  .bloque1, .bloque2{
+    display: flex;
+    justify-content: space-between;
+  }

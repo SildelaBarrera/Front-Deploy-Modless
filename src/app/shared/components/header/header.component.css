@@ -1,10 +1,18 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Asegura que body y html ocupen toda la altura de la ventana */
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+}
+
 .header{
-    height: 4vh;
+    height: 5vh;
     width: 100%;
     background-color: black;
     display: flex;
+    padding-top: 2px;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 .text{
     height: 3vh;
@@ -16,27 +24,68 @@ h6{
     /* border: red solid 2px; */
     margin-bottom: -px;
     color:white;
-    font-size: small;
-    font-family: "Montserrat", serif;
+    font-size: clamp(15px, 2vw, 12px);
+    font-optical-sizing: auto; 
+    font-style: normal;  
+    font-family: "Afacad Flux", sans-serif;
     font-optical-sizing: auto;
     font-weight: weight;
-    font-style: normal;   
+    
+       
 }
 .subheader{
-    height: 7vh;
+    height: 14vh;
     width: 100%;
-    position: fixed;
+    right: 0;
+    position: absolute;
+    top: 10;
+    width: 100%;
+    z-index: 1000;
     background-color: transparent;
     display: flex;
+    flex-direction: row;
     justify-content: end;
-    align-items: end;
+    align-items: center;
     padding-right: 20px;
-    padding-top: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+.transparent {
+    background-color: transparent !important;
+  }
+  
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logonegro {
+    width: 200px; /* Ajusta según sea necesario */
+    height: auto;
+    cursor: pointer;
 }
 .icons{
-    border: blue solid 2px;
+    height: 60%;
+    width: 15%;
     display: flex;
-    
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    min-width: 120px;
+    margin-right: 15px;
+}
+/* Cambiar el color de los iconos a gris oscuro */
+.bi {
+    color: #586673;  /* Gris oscuro */
+}
+
+/* Puedes también aplicar un efecto de cambio de color en hover si lo deseas */
+.bi:hover {
+    color: #313a43;  /* Un gris aún más oscuro al pasar el ratón */
 }
 .btn{
     height: 30px;
@@ -48,15 +97,34 @@ h6{
     justify-content:center; 
 }
 .icon-auto {
-    mix-blend-mode: difference;
-    color: rgba(255, 255, 255, 0.801);
+    padding-left: 9px;
 }
-.badge-count {
-    font-size: 12px; 
-    width: 18px; 
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+@media (max-width: 768px) {
+    .header {
+        height: 7vh; /* Un poco más grande en móviles */
+    }
+
+    .subheader {
+        height: 12vh;
+        display: flex;
+        justify-content: center; /* Centra todo en pantallas pequeñas */
+        padding: 0 10px; /* Reduce el padding */
+    }
+
+    .logo {
+        position: static; /* Quita el posicionamiento absoluto */
+        transform: none;
+    }
+    .logonegro {
+        width: 100px; /* Tamaño más pequeño para el logo en móviles */
+        height: auto;
+    }
+    .icons {
+        position: absolute;
+        right: 10px; /* Mueve los iconos a la derecha */
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        gap: 10px; /* Espaciado entre iconos */
+    }
+}

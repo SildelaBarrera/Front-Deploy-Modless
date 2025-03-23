@@ -1,0 +1,14 @@
+<div class="success-container">
+    <div class="success-card">
+      <!-- <img src="assets/success-icon.png" alt="Éxito" class="success-icon"> -->
+      <h1>¡Compra Exitosa! 🎉</h1>
+      <p>Gracias por tu compra. Hemos recibido tu pago correctamente.</p>
+  
+      <div class="order-details">
+        <p><strong>ID de Transacción:</strong> <span>{{ transactionId }}</span></p>
+        <p><strong>Precio Final:</strong> <span>{{ totalPrice }} €</span></p>
+      </div>
+  
+      <button class="home-button" (click)="goToHome()">Volver a Inicio</button>
+    </div>
+  </div>

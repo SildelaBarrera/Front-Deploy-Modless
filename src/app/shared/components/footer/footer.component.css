@@ -1,0 +1,110 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  background-color: black;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: start; 
+  width: 100vw; 
+  z-index: 1; 
+  margin: 0;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.bloques{
+/* border: blue 2px solid; */
+width: 100%;
+max-width: 1200px;
+padding-left: 30px;
+font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:"slnt" 0; 
+  font-size: medium;
+  display: flex;
+  flex-wrap: wrap; /* Para que los elementos bajen en móviles */
+  justify-content: space-between;
+}
+.bloque-1{
+  width: 20%;
+  text-align: start;
+}
+.bloque-2{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+  }
+.footer a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  /* Estilo cuando se hace scroll hacia abajo */
+.footer.visible {
+  transform: translateY(0); /* Muestra el footer */
+}
+.footer.hidden {
+  transform: translateY(100%); /* Lo esconde desplazándolo hacia abajo */
+}
+h4{
+  font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings:"slnt" 0; 
+    font-size: medium;
+}
+.list-inline-item{
+  font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0; 
+      font-size: medium;
+}
+.insta{
+  margin-left:40px;
+  width: 12%;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .footer{
+    width: 100vw;
+    height: 350px;
+  }
+  .bloques {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bloque-1, .bloque-2 {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .insta {
+    margin: -20px;
+    width: 30px; /* Ajusta el tamaño en móviles */
+  }
+
+  .list-inline-item {
+    display: block; /* Para que los enlaces aparezcan en lista en móviles */
+    margin-bottom: 5px;
+  }
+}

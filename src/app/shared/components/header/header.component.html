@@ -1,18 +1,34 @@
 <nav class="header">
-    <div class="text">
-      <h6>ENVÍO GRATIS A PENÍNSULA A PARTIR DE 50€</h6>
+  <div class="text">
+    <h6>ENVÍO GRATIS A PENÍNSULA A PARTIR DE 50€</h6>
+  </div>
+</nav>
+
+<div class="subheader" [ngClass]="{'transparent': isHome, 'white': !isHome}">
+  
+  <div class="logo" routerLink="/home">
+    <img class="logonegro" src="/logonegro.png" routerLink="/home">
+  </div>
+  
+  <div class="icons">
+    <a [routerLink]="['/cart']" routerLinkActive="activo">
+      <i class="bi bi-bag fs-3 icon-auto icon-shadow"></i>
+    </a>
+
+    <div class="login" *ngIf="!authService.isLoggedIn()">
+      <a [routerLink]="['/login']" routerLinkActive="activo">
+        <i class="bi bi-person fs-3 icon-auto icon-shadow"></i>
+      </a>
     </div>
-  </nav>
-  <div class="subheader">
-    <div class="icons">
-      <a [routerLink]="['/cart']" routerLinkActive="activo" class="btn position-relative">
-        <i class="bi bi-bag fs-5 icon-auto"></i>
-     </a>
-    <div class="login">
-      <button 
-        class="btn position-relative">
-        <i class="bi bi-person fs-4 icon-auto icon-shadow"></i>
-      </button>
+
+    <div *ngIf="authService.isLoggedIn()">
+      <a routerLink="/profile">
+        <i class="bi bi-house fs-3 icon-auto icon-shadow"></i>
+      </a>
     </div>
+
+    <div *ngIf="authService.isLoggedIn()" (click)="logout()" class="logout-icon">
+      <i class="bi bi-box-arrow-right fs-3 icon-auto icon-shadow"></i>
     </div>
   </div>
+</div>

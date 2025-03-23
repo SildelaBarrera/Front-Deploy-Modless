@@ -1,0 +1,146 @@
+body {
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin-top: 100px;
+}
+
+h3 {
+  font-weight: 600;
+  color: #151515;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.register-container {
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 1rem;
+  color: #34495e;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #404040;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group input:focus {
+  border-color: #4c4c4c;
+  outline: none;
+}
+
+.input-group small {
+  font-size: 0.875rem;
+  color: #e74c3c;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #121212;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+button:disabled {
+  background-color: #676767;
+}
+
+button:hover:enabled {
+  background-color: #2a2a2a;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: block;
+}
+
+p {
+  text-align: center;
+}
+
+p a {
+  color: #2d2d2d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+.alert {
+  padding: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.alert-success {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.alert-danger {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .register-container {
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,25 @@
+<body><div class="container">
+    <h2>CONTACTO</h2>
+    <form [formGroup]="contactoForm" (ngSubmit)="enviarFormulario()">
+      <input type="text" formControlName="nombre" placeholder="Nombre y apellidos">
+      <div *ngIf="contactoForm.controls['nombre'].invalid && contactoForm.controls['nombre'].touched">
+        <small>El nombre es obligatorio.</small>
+      </div>
+  
+      <input type="email" formControlName="email" placeholder="Correo Electrónico">
+      <div *ngIf="contactoForm.controls['email'].invalid && contactoForm.controls['email'].touched">
+        <small>Introduce un correo válido.</small>
+      </div>
+  
+      <textarea formControlName="mensaje" rows="4" placeholder="Mensaje"></textarea>
+      <div *ngIf="contactoForm.controls['mensaje'].invalid && contactoForm.controls['mensaje'].touched">
+        <small>El mensaje no puede estar vacío.</small>
+      </div>
+  
+      <button type="submit" [disabled]="contactoForm.invalid">Enviar</button>
+    </form>
+  
+    <p *ngIf="mensajeEnviado">{{ mensajeEnviado }}</p>
+  </div>
+</body>
+  

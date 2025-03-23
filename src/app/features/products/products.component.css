@@ -1,13 +1,105 @@
 .products-page {
-    padding: 200px; 
-    border: red solid 2px;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
-  .products{
-    border: red solid 2px;
-    display: flex;
-    justify-content: space-between;
-  }
+/* Título de la sección */
+.section-title {
+  font-size: 1.8rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 20px;
+  margin-top:130px;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: lighter;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: x-large;
+}
+.products{
+  margin:10px;
   
+  /* border: red solid 2px; */
+  width: 62%;
+}
+/* Tarjetas de productos más pequeñas */
+.product-card {
+  /* border: green solid 2px; */
+  border-radius: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* Para que se adapten al contenedor */
+  max-width: 350px; /* Mantiene proporción */
+  height: 470px; /* Hace las tarjetas más verticales */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+  margin-bottom: 35px;
+
+  
+}
+/* Imagen del producto */
+.product-image {
+  border-radius: 0;
+  width: 100%;
+  height: 95%; /* Tamaño reducido */
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.image-button {
+  border: none;
+  background: none;
+  padding: 0;
+  display: block;
+  width: 100%;
+}
+
+.image-button:hover .product-image {
+  transform: scale(1.05);
+}
+
+/* Nombre del producto */
+.product-name {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+    margin-top:-15px;
+
+}
+
+/* Precio */
+.price {
+  font-size: 1rem;
+  color: #007bff;
+  font-weight: bold;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: lighter;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+}
+
+/* Botón Ver más */
+.btn-primary {
+  border-radius: 15px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}

@@ -15,7 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductComponent implements OnInit {
   
   products: Product[] = [];  // Usamos un array normal para almacenar los productos
-  private route = inject(ActivatedRoute)
+  categoryTitle: string = 'Nueva colección'; // Título dinámico por defecto
+  private route = inject(ActivatedRoute);
 
   constructor(
     private productService: ProductService, // Inyección de servicio
@@ -25,6 +26,13 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const category = params['category'];
+      
+      if (category) {
+        this.categoryTitle = category; // Actualiza el título con la categoría
+      } else {
+        this.categoryTitle = 'Nueva colección'; // Título por defecto
+      }
+
       this.fetchProducts(category);
     });
   }

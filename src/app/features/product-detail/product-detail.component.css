@@ -1,84 +1,339 @@
-.color-options button, .size-options button {
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-  .selected {
-    background-color: #4CAF50;
-    color: white;
-  }
-  .color-options button.selected {
-    border: 2px solid #007bff;
-    background-color: #e9f7ff;
-  }
+/* Estilo general */
+.container {
+  margin-top: 150px;
+  max-width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+.content{
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Imagen principal */
+.main-image {
+  max-height: 700px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  transition: transform 0.3s ease;
   
-  .color-options button {
-    margin: 5px;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .size-options button.selected {
-    border: 2px solid #28a745;
-    background-color: #e9f7e9;
-  }
-  
-  .size-options button {
-    margin: 5px;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .carousel-inner img {
-    max-height: 400px;
-    object-fit: contain;
-  }
-  
-  /* Contenedor del Producto */
-  .product-title {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .product-price {
-    font-size: 1.5rem;
-    color: #007bff;
-    margin-top: 10px;
-  }
-  
-  .product-description {
+}
+h3 {
+  cursor: pointer;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
+    margin-bottom: 15px;
+}
+
+.bi {
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.bi-chevron-up {
+  transform: rotate(180deg); /* Rota la flecha cuando el contenido está visible */
+}
+.miniaturas{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+/* Miniaturas */
+.miniatura {
+  width: 100px; /* Reduce el tamaño en móviles */
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 0;
+  transition: transform 0.2s ease, border 0.2s ease;
+  margin-bottom: 10px;
+  margin-right: 100px;
+}
+
+.miniatura:hover {
+  transform: scale(1.1);
+}
+
+.active-thumbnail {
+  border: 2px solid #444;
+}
+
+/* Título y descripción */
+.product-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: x-large;
     margin-top: 20px;
-  }
+    margin-left: -35px;
+}
+.detalles{
+  width: 180%;
+  margin-left: 30px;
+  margin-bottom: 40px;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #000000;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
+}
+.product-description {
+  width: 60%;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
+  margin-bottom: 20px;
+  border: 2px red solid;
+}
+h4{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+    margin-top: 10px;
+}
+.entrega{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+    margin-top: -3px;
+}
+/* Botones de selección */
+.color-options, .size-options {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: small;
+    background: none;
+    border: 1px solid #aaa;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgb(8, 0, 0);
+}
+.color-options button:hover, 
+.size-options button:hover {
+  background: #dcdcdc;
+}
+.selected {
+  background-color: #c8c8c8; /* Azul */
+  color: rgb(13, 13, 13);
+  border: 2px solid #4a4a4a;
+}
+.colors, .sizes{
+  display: flex;
+  gap: 8px;
+}
+/* Selector de cantidad */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.quantity-selector button {
+  background: none;
+  border: 1px solid #aaa;
+  padding: 5px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 5px;
+}
+
+.quantity-selector button:hover {
+  background: #f0f0f0;
+}
+
+.quantity-selector input {
+  width: 50px;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Botón de compra */
+.btn-dark {
+  width: 30%;
+  font-size: 1rem;
+  background: #222;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+}
+
+.btn-dark:hover {
+  background: #333;
+}
+.selected-option {
+  background-color: #000; /* Negro */
+  color: #fff; /* Blanco */
+  font-weight: bold;
+  border: 2px solid #000;
+}
+.desplegables{
+
+  margin-left: 30px;
+  width: 180%;
+}
+.caracteristicas{
+  margin-top: 12px;
+}
+
+h5{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
   
-  /* Botón de Comprar */
-  button.btn-primary {
-    margin-top: 30px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
+}
+.product-price{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: medium;
+}
+.product-caracteristicas{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
+}
+.tallas{
+  width: 115%;
+  height: auto;
+  margin-left: -33px;
+  margin-bottom: 20px;
+}
+.envio-title{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
+  margin-top: 20px;
+}
+p{
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: large;
+  margin-top: -5px;
+  
+}
+@media (max-width: 768px) {
+  /* Asegura que los elementos se apilen en móviles */
+  .container {
+    margin-top: 80px;
+    max-width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .thumbnail-gallery {
+  .miniaturas {
+    order: -1; /* Mueve las miniaturas arriba en móviles */
     display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  
-  .thumbnail-gallery .miniatura {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    cursor: pointer;
-    border: 2px solid transparent;
+
+  /* Ajusta el tamaño de la imagen principal */
+  .main-image {
+    max-width: 90%;
   }
-  
-  .thumbnail-gallery .miniatura:hover {
-    border-color: #007bff;
+
+  /* Asegura que los botones no ocupen demasiado espacio */
+  .colors, .sizes {
+    flex-wrap: wrap;
+    justify-content: start;
   }
-  
-  /* Resaltar la imagen seleccionada */
-  .carousel-inner img {
-    max-height: 400px;
-    object-fit: contain;
+  .product-description{
+    width: 100%;
   }
+  .desplegables {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .tallas {
+    max-width: 100%;
+    margin: auto;
+  }
+}
+

@@ -11,4 +11,5 @@ export interface Variant {
     id_size: number;  
     stock: Stock;  
     images: VariantImage; 
+    size: Size;
   }

@@ -1,0 +1,65 @@
+/* Contenedor principal */
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    padding: 20px;
+  }
+  
+  /* Tarjeta de éxito */
+  .success-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  /* Ícono de éxito */
+  .success-icon {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
+  /* Encabezado */
+  h1 {
+    color: #28a745;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  
+  /* Texto */
+  p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  /* Detalles de la orden */
+  .order-details p {
+    font-size: 14px;
+    background: #e9f5e9;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  /* Botón de volver a inicio */
+  .home-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .home-button:hover {
+    background: #218838;
+  }

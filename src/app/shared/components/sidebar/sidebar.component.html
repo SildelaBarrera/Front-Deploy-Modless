@@ -1,37 +1,35 @@
+<button class="sidebar-toggle" (click)="toggleSidebar()">
+  <i class="bi bi-list" [ngClass]="{'text-white': isSidebarOpen, 'text-black': !isSidebarOpen}"></i>
+</button>
+
 <div class="d-flex">
+  
     <!-- Sidebar -->
-    <div class="sidebar bg-dark text-white p-3" [ngClass]="{'sidebar-open': isSidebarOpen}">
+    <div class="sidebar text-white p-3" [ngClass]="{'sidebar-open': isSidebarOpen}">
       
       <ul class="navbar flex-column">
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/products">Nueva colección</a>
+        <li class="nav-item ">
+            <a class="nav-link lista" routerLink="/products">NUEVA COLECCIÓN</a>
         </li>
  
         <li class="nav-item">
-          <button class="tienda" (click)="toggleCategory('clothes')">Tienda</button>
-          <ul *ngIf="isCategoryOpen('clothes')" class="nav flex-column ms-3">
-            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Camisetas y tops' }">Camisetas y tops</a></li>
-            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Pantalones y faldas'}">Pantalones y faldas</a></li>
-            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Vestidos'}">Vestidos</a></li>
-            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Total look'}">Total look</a></li>
-            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Accesorios'}">Accesorios</a></li>
+          <a class="tienda lista" (click)="toggleCategory('clothes')">TIENDA</a>
+          <ul *ngIf="isCategoryOpen('clothes')" class="desplegable flex-column ms-3">
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Camisetas y tops' }">TOPS</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Pantalones y faldas'}">FALDAS Y PANTALONES</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Vestidos'}">VESTIDOS</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Total look'}">TOTAL LOOKS</a></li>
+            <li class="nav-item list-group-item"><a class="nav-link text-white" routerLink="/products" [queryParams]="{ category: 'Accesorios'}">ACCESORIOS</a></li>
           </ul>
         </li>
       
         <li class="nav-item">
-            <a class="nav-link" href="#">ABOUT US</a>
+            <a class="nav-link lista"routerLink="/about">SOBRE MODLESS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">CONTACT</a>
+            <a class="nav-link lista"routerLink="/contacto">CONTACTO</a>
         </li>
       </ul>
     </div>
-  
-  
-    <button class="btn btn-sidebar btn-primary" (click)="toggleSidebar()">☰</button>
-  
-    <!-- Contenido principal -->
-    <div class="main-content ms-3">
-      
-    </div>
+
   </div>

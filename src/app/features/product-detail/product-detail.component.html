@@ -1,93 +1,107 @@
-<!-- <div *ngIf="product">
-  <h1>{{ product.name }}</h1>
-  <h3>Precio: {{ product.price | currency }}</h3>
+<div class="container py-5">
+  <div class="content row">
+    <!-- Miniaturas (columna izquierda) -->
+    <div class="miniaturas col-md-2 d-none d-md-flex flex-column align-items-center">
+      <ng-container *ngFor="let color of product?.colors">
+        <ng-container *ngFor="let size of color?.sizes">
+          <img 
+            *ngIf="size?.image" 
+            [src]="size.image" 
+            alt="Variante {{ size?.size }} {{ color?.color }}"
+            class="miniatura"
+            [ngClass]="{'active-thumbnail': selectedImage === size.image}"
+            (click)="selectedImage = size.image">
+        </ng-container>
+      </ng-container>
+    </div>
 
-  <img [src]="selectedImage" alt="{{ product.name }}" width="200">
-
-  <h4>Selecciona un color:</h4>
-  <div class="color-options">
-    <button *ngFor="let color of product.colors" 
-            [ngClass]="{'selected': selectedColor.color === color.color}"
-            (click)="selectedColor = color; selectedSize = ''; updateImage()">
-      {{ color.color }}
-    </button>
-  </div>
-
-  <h4>Selecciona una talla:</h4>
-  <div class="size-options">
-    <button *ngFor="let size of selectedColor?.sizes"
-            [ngClass]="{'selected': selectedSize === size.size}"
-            (click)="selectedSize = size.size; updateImage()">
-      {{ size.size }}
-    </button>
-  </div>
-
-  <button (click)="addToCart()">🛒 Agregar al carrito</button>
-</div>
- -->
-
- <div class="container py-5">
-  <div class="row">
-    <!-- Imagen principal del Producto -->
-    <div class="col-md-6">
-      <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img [src]="selectedImage" class="d-block w-100" alt="{{ product?.name }}">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      
-      <!-- Miniaturas de imagenes de las variantes -->
-      <div class="thumbnail-gallery mt-3">
-        <div *ngFor="let color of product?.colors">
-          <div *ngFor="let size of color.sizes">
-            <img 
-              *ngIf="size.image" 
-              [src]="size.image" 
-              alt="Imagen variante {{ size.size }} {{ color.color }}"
-              class="img-thumbnail miniatura"
-              (click)="selectedImage = size.image" />
-          </div>
-        </div>
-      </div>
+    <!-- Imagen principal -->
+    <div class="col-md-6 text-center">
+      <img [src]="selectedImage" class="img-fluid main-image" alt="{{ product?.name }}">
     </div>
 
     <!-- Detalles del Producto -->
-    <div class="col-md-6">
-      <h2 class="product-title">{{ product?.name }}</h2>
-      <p class="product-price">{{ product?.price }} €</p>
-      <p class="product-description">{{ product?.description }}</p>
+    <div class="col-md-4 ">
+      <div class="detalles">
+        <h2 class="product-title">{{ product?.name }}</h2>
+        <p class="product-price">{{ product?.price }} €</p>
 
-      <h4>Selecciona un color:</h4>
-      <div class="color-options">
-        <button *ngFor="let variant of product.colors" 
-                [ngClass]="{'selected': selectedColor.color === variant.color}"
-                (click)="selectedColor = variant; selectedSize = ''; updateImage()">
-          {{ variant.color }}
-        </button>
-      </div>
-      
+        <h4>Selecciona un color</h4>
+        <div class="colors">
+          <button class="color-options" *ngFor="let variant of product.colors" 
+                  [ngClass]="{'selected': selectedColor?.id_color === variant.id_color}"
+                  (click)="selectedColor = variant; selectedSize = ''; updateImage()">
+            {{ variant.color }}
+          </button>
+        </div>
+        <h4>Selecciona una talla</h4>
+        <div class="sizes">
+          <button class="size-options" *ngFor="let size of selectedColor?.sizes"
+                  [ngClass]="{'selected': selectedSize === size.id_size}"
+                  (click)="selectedSize = size.id_size; updateImage()">
+            {{ size.size }}
+          </button>
+        </div>
+        
 
-      <h4>Selecciona una talla:</h4>
-      <div class="size-options">
-        <button *ngFor="let size of selectedColor?.sizes"
-          [ngClass]="{'selected': selectedSize === size.size}"
-          (click)="selectedSize = size.size; updateImage()">
-        {{ size.size }}
-        </button>
-      </div>
+        <h4>Tiempo de entrega</h4>
+        <p class="entrega">{{product?.entrega}}</p>
+
+
+          <!-- Selector de Cantidad -->
+          <h4>Cantidad:</h4>
+          <div class="quantity-selector">
+            <button (click)="decreaseQuantity()">-</button>
+            <input type="number" [(ngModel)]="quantity" min="1">
+            <button (click)="increaseQuantity()">+</button>
+          </div>
 
       <!-- Botón de Comprar -->
-      <button class="btn btn-primary btn-lg" (click)="addToCart()">Añadir al carrito</button>
+      <button class="btn btn-dark btn-lg" (click)="addToCart()">Añadir al carrito</button>
+    </div>
+    <div class="desplegables">
+      <h3>DESCRIPCIÓN</h3>
+      <div class="product-description">
+      <p>{{ product?.description }}</p>
+    </div>
+
+      <!-- Botón para alternar la visibilidad de las características -->
+      <h3 (click)="toggleCharacteristics()" style="cursor: pointer;"> CARACTERÍSTICAS
+        <i [ngClass]="{'bi-chevron-down': !isCharacteristicsVisible, 'bi-chevron-up': isCharacteristicsVisible}" class="bi"></i>
+      </h3>
+
+      <!-- Desplegable de Características -->
+      <div class='caracteristicas' *ngIf="isCharacteristicsVisible">
+        <h5>COMPOSICIÓN</h5><p class="product-caracteristicas">{{ product?.composition }}</p>
+        <h5>CUIDADOS</h5><p class="product-caracteristicas">{{ product?.garment_care }}</p>
+      </div>
+
+      <h3 (click)="toggleGuide()" style="cursor: pointer;"> GUÍA DE TALLAS
+        <i [ngClass]="{'bi-chevron-down': !isGuideVisible, 'bi-chevron-up': isGuideVisible}" class="bi"></i>
+      </h3>
+      <div *ngIf="isGuideVisible">
+        <img class="tallas" src="/tallas.png">
+        <!-- Aquí puedes añadir más detalles de las características -->
+      </div>
+
+      <h3 (click)="toggleEnvio()" style="cursor: pointer;">ENVÍO
+        <i [ngClass]="{'bi-chevron-down': !isEnvioVisible, 'bi-chevron-up': isEnvioVisible}" class="bi"></i>
+      </h3>
+      <div *ngIf="isEnvioVisible">
+        <h4 class="envio-title">PENÍNSULA</h4>
+        <p>Gratis en pedidos + 50€</p>
+        <p>Estándar a domicilio 4,99€</p>
+        <p>Recogida en punto pack 2,99€</p>
+        <p>Envío a domicilio en Baleares y Canarias 9,99€</p>
+  
+        <h4 class="envio-title">INTERNACIONAL</h4>
+        <p>Recogida en punto pack Gratis + 150€</p>
+        <p>Recogida en punto pack Zona 1 (Francia, Bélgica, Luxemburgo) 6.99€</p>
+        <p>Recogida en punto pack Zona 2 (Polonia, Italia, Alemania, Austria) 9.99€</p>
+      
+      </div>
     </div>
   </div>
+  </div>
 </div>
+

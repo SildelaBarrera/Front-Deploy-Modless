@@ -1,0 +1,57 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    display: flex; /* Para centrar en toda la pantalla */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Altura mínima de la pantalla */
+    font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0; 
+      font-size: medium;
+      margin-top:95px;
+  }
+  
+  /* Contenedor principal */
+  .contenedor {
+    max-width: 960px;
+    width: 80%;
+    padding: 20px;
+    
+  }
+  
+  /* Estilos de las secciones */
+  .section {
+    margin-bottom: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: none; /* Quitamos la sombra */
+  }
+  
+  h2, h3 {
+    font-weight: 600;
+    color: #000000;  /* Gris oscuro para los títulos */
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #000000;  /* Gris más claro para el texto */
+  }
+  
+
+.section p {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+.section ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+.section ul li {
+    margin-bottom: 10px;
+}

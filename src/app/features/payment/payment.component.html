@@ -1,0 +1,42 @@
+<!-- <div class="container">
+    <h2>Registrar Pago</h2>
+  
+    <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+      <div>
+        <label>ID de Orden:</label>
+        <input type="text" formControlName="id_order" />
+      </div>
+  
+      <div>
+        <label>Método de Pago:</label>
+        <select formControlName="method">
+          <option value="tarjeta">Tarjeta</option>
+          <option value="paypal">PayPal</option>
+          <option value="transferencia">Transferencia</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>ID de Transacción:</label>
+        <input type="text" formControlName="id_transaction" />
+      </div>
+  
+      <div>
+        <label>Monto:</label>
+        <input type="number" formControlName="amount" step="0.01" />
+      </div>
+  
+      <div>
+        <label>Estado:</label>
+        <select formControlName="status">
+          <option value="pendiente">Pendiente</option>
+          <option value="completado">Completado</option>
+          <option value="fallido">Fallido</option>
+        </select>
+      </div>
+  
+      <button type="submit" [disabled]="isLoading">Registrar Pago</button>
+    </form>
+  
+    <p *ngIf="message">{{ message }}</p>
+  </div> -->

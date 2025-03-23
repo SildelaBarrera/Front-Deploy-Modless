@@ -1,49 +1,227 @@
+/* Contenedor principal del carrito */
 .cart-container {
+  max-width: 800px;
+  margin: 40px auto;
   padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Título */
+.cart-title {
+  text-align: start;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0b0b0b;
+  margin-bottom: 20px;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 250;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0; 
+    font-size: xx-large;
+}
+
+/* Lista de productos en el carrito */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Cada producto en el carrito */
 .cart-item {
   display: flex;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  transition: all 0.3s ease-in-out;
 }
 
-.cart-item-image img {
-  max-width: 100px;
-  margin-right: 20px;
+.cart-item:hover {
+  background: #ececec;
 }
 
-.cart-item-details {
-  flex: 1;
+/* Imagen del producto */
+.cart-item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Información del producto */
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .cart-item-details h3 {
-  margin: 0;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.product-color, .product-size, .product-price {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Acciones del carrito */
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botones de cantidad */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.quantity-btn:hover {
+  background: #444;
+}
+
+.quantity {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Subtotal */
+.product-subtotal {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Botón eliminar */
+.remove-btn {
+  background: transparent;
+  color: red;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remove-btn:hover {
+  text-decoration: underline;
+}
+
+/* Mensaje de carrito vacío */
+.empty-cart-message {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* Resumen del carrito */
+.cart-summary {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+/* Subtotal */
+.subtotal, .total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  padding: 5px 0;
+}
+
+.total {
   font-size: 18px;
 }
 
-.cart-item-details p {
-  margin: 5px 0;
+/* Código de descuento */
+.discount-section {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
 }
 
-.cart-item-details input {
-  width: 60px;
+.discount-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.cart-summary {
-  margin-top: 20px;
-  text-align: right;
-}
-
-.checkout-btn {
-  padding: 10px 20px;
-  background-color: #28a745;
+.apply-discount-btn {
+  padding: 8px 12px;
+  background: black;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.apply-discount-btn:hover {
+  background: #333;
+}
+
+/* Error de descuento */
+.discount-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Botón de checkout */
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
 }
 
 .checkout-btn:hover {
-  background-color: #218838;
+  background: #333;
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cart-item-info {
+    flex-direction: column;
+  }
+
+  .cart-item-actions {
+    flex-direction: column;
+  }
 }

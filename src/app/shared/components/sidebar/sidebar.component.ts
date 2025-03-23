@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,10 +13,20 @@ export class SidebarComponent {
   isSidebarOpen = false; // Estado para abrir/cerrar la sidebar
   openCategories: Set<string> = new Set(); // Para gestionar las categorías abiertas
 
+  constructor(private router: Router) {
+    // Detectar cambios en la ruta y cerrar la sidebar
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isSidebarOpen = false; // Cierra la sidebar
+      }
+    });
+  }
+  
   // Función para abrir y cerrar la sidebar
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
+
 
   // Función para abrir/cerrar una categoría
   toggleCategory(category: string) {
