@@ -6,8 +6,6 @@ import { CartService } from '../../core/services/cart.service';
 import { AuthService } from '../../core/services/auth.service';
 import { OrderItem } from '../../core/models/order.model';
 import { ShippingService } from '../../core/services/shipping.service';
-import { User } from '../../core/models/user.model';
-import { RouterLink } from '@angular/router';
 
 declare var paypal: any;
 
@@ -21,6 +19,7 @@ export class CheckoutComponent implements OnInit {
 
   user_id: number | null = null;
   selectedAddress: any = null;
+  addressId: number = 0;
   cartItems: any[] = [];
   totalPrice: number = 0;
   shippingCost: number = 0;
@@ -28,11 +27,12 @@ export class CheckoutComponent implements OnInit {
   discount_code: string = '';
   subtotal: number = 0;
   shippingMethod: string = "domicilio";
+  orderId: number | null = null;
   isHomeDeliveryAvailable: boolean = true;
   isPickupPointAvailable: boolean = true;  // "domicilio" o "punto_pack"
 
   order = {
-    user_id: this.user_id,
+    user_id: null,
     total: 0,
     id_address: '',
     shipping_method: this.shippingMethod,
@@ -65,47 +65,58 @@ export class CheckoutComponent implements OnInit {
   }
 
   loadPayPalButton() {
-  if (!(window as any).paypal) {
-    console.error("❌ No se pudo cargar el SDK de PayPal.");
-    return;
-  }
-
-  paypal.Buttons({
-    createOrder: async () => {
-      try {
-        console.log("📦 Creando orden en backend...");
-        // Aquí se hace la llamada al backend para crear la orden en PayPal
-        const response = await this.checkoutService.createPayPalOrder({ totalPrice: this.totalPrice }).toPromise();
-        console.log("✅ Orden creada en PayPal:", response);
-        return response.id; // Devuelve el orderID que PayPal espera para proceder con el pago
-      } catch (error) {
-        console.error("❌ Error al crear la orden en PayPal:", error);
-        alert("Hubo un problema al procesar el pago.");
-      }
-    },
-    onApprove: async (data: any) => {
-      try {
-        console.log("💰 Capturando pago con OrderID:", data.orderID);
-        const response = await this.checkoutService.capturePayPalOrder(data.orderID).toPromise();
-        console.log("✅ Pago capturado con éxito:", response);
-
-        // Redirigir a la página de éxito de tu aplicación después de que el pago se haya capturado correctamente
-        window.location.href = '/success';  // Aquí pones la ruta a tu página de éxito
-
-        // O si quieres redirigir a una URL externa de PayPal, como la página de confirmación de PayPal:
-        // window.location.href = data.returnUrl;
-      } catch (error) {
-        console.error("❌ Error al capturar el pago:", error);
-        alert("Hubo un error al confirmar el pago.");
-      }
-    },
-    onError: (err: any) => {
-      console.error("❌ Error en PayPal:", err);
-      alert("Ocurrió un error con PayPal, inténtalo de nuevo.");
+    if (!(window as any).paypal) {
+      console.error("❌ No se pudo cargar el SDK de PayPal.");
+      return;
     }
-  }).render('#paypal-button-container');
-}
-
+  
+    paypal.Buttons({
+      createOrder: async () => {
+        try {
+          console.log("📦 Creando orden en PayPal...");
+          const response = await this.checkoutService.createPayPalOrder({
+            totalPrice: this.totalPrice
+          }).toPromise();
+    
+          console.log("✅ Orden creada en PayPal:", response);
+          return response.id;
+        } catch (error) {
+          console.error("❌ Error al crear la orden en PayPal:", error);
+          alert("Hubo un problema al procesar el pago.");
+        }
+      },
+      onApprove: async (data: any) => { // ✅ CORREGIDO
+        try {
+          console.log("💰 Capturando pago con OrderID:", data.orderID);
+    
+          // Capturar el pago en PayPal
+          const captureData = {
+            orderID: data.orderID,
+            token: data.facilitatorAccessToken,
+            user_id: this.user_id
+          };
+    
+          const res = await this.checkoutService.capturePayPalOrder(captureData).toPromise();
+          console.log("✅ Pago capturado:", res);
+    
+          // 🔥 Guardar la orden en la base de datos
+          this.saveOrderToDatabase();
+    
+          // Redirigir al usuario a la página de éxito
+          window.location.href = "/success";
+        } catch (error) {
+          console.error("❌ Error al capturar el pago:", error);
+          alert("Hubo un error al confirmar el pago.");
+        }
+      },
+      onError: (err: any) => {
+        console.error("❌ Error en PayPal:", err);
+        alert("Ocurrió un error con PayPal, inténtalo de nuevo.");
+      }
+    }).render('#paypal-button-container');
+  }
+  
+  
   onShippingMethodChange(event: any) {
     this.shippingMethod = event.target.value;
     this.shippingService.updateShippingMethod(this.shippingMethod);
@@ -126,6 +137,10 @@ export class CheckoutComponent implements OnInit {
         if (res && res.address) { 
           console.log("✅ Dirección recibida:", res.address);
           this.selectedAddress = res.address;
+
+           this.addressId = res.address.id_address;
+           console.log ('Id de la dirección:', this.addressId)
+
           this.updateShippingOptions(); // 🔥 Actualizar opciones de envío aquí
         } else {
           console.warn("⚠️ No se encontró dirección.");
@@ -136,6 +151,7 @@ export class CheckoutComponent implements OnInit {
       }
     });
   }
+  
 
   updateShippingOptions() {
     if (!this.selectedAddress || !this.selectedAddress.country || !this.selectedAddress.community) return;
@@ -170,38 +186,6 @@ export class CheckoutComponent implements OnInit {
         }
       },
       error: (err) => console.error("❌ Error al obtener el carrito:", err.message)
-    });
-  }
-
-  submitOrder() {
-    if (!this.user_id || this.cartItems.length === 0 || !this.selectedAddress) {
-      alert("❌ Faltan datos obligatorios para crear la orden.");
-      return;
-    }
-  
-    const orderData = {
-      user_id: this.user_id,
-      total: this.totalPrice, // 💰 Asegurarse de que se calcula correctamente
-      id_address: this.selectedAddress.id_address,
-      shipping_method: this.shippingMethod,
-      items: this.cartItems.map(item => ({
-        variant_id: item.id_variant,
-        quantity: item.quantity,
-        subtotal: parseFloat(item.price) * item.quantity
-      }))
-    };
-  
-    console.log("📦 Enviando orden:", orderData);
-  
-    this.checkoutService.createOrder(orderData).subscribe({
-      next: (res) => {
-        console.log("✅ Orden creada con éxito:", res);
-        alert("¡Orden creada con éxito!");
-      },
-      error: (err) => {
-        console.error("❌ Error al crear la orden:", err);
-        alert("Hubo un error al procesar la orden.");
-      }
     });
   }
 
@@ -250,5 +234,41 @@ export class CheckoutComponent implements OnInit {
     const discount = Number(this.discountAmount) || 0;
     const shipping = Number(this.shippingCost) || 0;
     this.totalPrice = (subtotal - discount) + shipping;
+
+    if (isNaN(this.totalPrice) || this.totalPrice <= 0) {
+      console.error("❌ El precio total no es válido.");
+      return; // Si el total no es válido, no enviar la orden
+    }
   }
+
+  saveOrderToDatabase() {  
+    if (!this.user_id || !this.selectedAddress || this.cartItems.length === 0) {
+        console.warn("⚠️ Datos incompletos para guardar la orden.");
+        return;
+    }
+
+    const orderData = {
+        user_id: this.user_id,
+        totalPrice: this.totalPrice, // Total de la orden
+        id_address: this.addressId,
+        shipping_method: this.shippingMethod,
+        items: this.cartItems.map(item => ({
+            variant_id: item.id_variant,
+            quantity: item.quantity,
+            subtotal: parseFloat(item.price) * item.quantity
+        }))
+    };
+
+    console.log("📦 Datos enviados a saveOrder:", JSON.stringify(orderData, null, 2));
+
+    this.checkoutService.saveOrder(orderData).subscribe({
+        next: (res) => {
+            console.log("✅ Orden guardada en la base de datos:", res);
+        },
+        error: (err) => {
+            console.error("❌ Error al guardar la orden en la base de datos:", err);
+        }
+    });
+}
+
 }

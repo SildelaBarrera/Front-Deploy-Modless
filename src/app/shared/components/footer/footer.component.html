@@ -1,11 +1,16 @@
 <footer class="footer text-white py-4"> 
+  <script>
+    window.onload = function () {
+        window.scrollTo(0, 0);
+    };
+</script>
   <div class="bloques row">
     <!-- Primera columna -->
     <div class="bloque-1 col-12 col-md-6 mb-3 mb-md-0 text-center text-md-start">
       <p class="mb-1">&copy; {{ currentYear }} Modless</p>
       <p>contact&#64;modless.es</p>
       
-      <a href="https://www.instagram.com/modless_official/" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.instagram.com/modless.es/" target="_blank" rel="noopener noreferrer">
         <img class="insta" src="/insta.png" ></a>
     </div>
 
@@ -22,7 +27,7 @@
           <a routerLink="/privacidad">Política de Privacidad</a>
         </li>
         <li class="list-inline-item d-block d-md-inline">
-          <a routerLink="/terminos">Términos y Condiciones</a>
+          <a routerLink="/terminos" >Términos y Condiciones</a>
         </li>
       
     </div>

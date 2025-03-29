@@ -6,6 +6,12 @@
     height: 100vh;
     background-color: #f4f4f9;
     padding: 20px;
+    font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: lighter;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
   }
   
   /* Tarjeta de éxito */
@@ -27,7 +33,7 @@
   
   /* Encabezado */
   h1 {
-    color: #28a745;
+    color: #141414;
     font-size: 22px;
     margin-bottom: 10px;
   }
@@ -50,7 +56,7 @@
   
   /* Botón de volver a inicio */
   .home-button {
-    background: #28a745;
+    background: #080808;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -61,5 +67,5 @@
   }
   
   .home-button:hover {
-    background: #218838;
+    background: #3b3b3b;
   }

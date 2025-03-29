@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -9,6 +9,15 @@ import { RouterLink } from '@angular/router';
 })
 export class FooterComponent {
 
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
   currentYear: number = new Date().getFullYear();
+ 
+
 
 }

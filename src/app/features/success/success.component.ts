@@ -22,29 +22,18 @@ export class SuccessComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.transactionId = this.route.snapshot.queryParamMap.get('transactionId');
-      this.totalPrice = Number(this.route.snapshot.queryParamMap.get('totalPrice'));
-    this.route.queryParams.subscribe((params) => {
-      this.token = params['token'];
-      if (this.token) {
-        this.confirmPayment();
-      }
-    });
+    // Aquí puedes capturar cualquier parámetro de la URL si es necesario
+    // const transactionId = this.route.snapshot.queryParamMap.get('transactionId');
+    // const totalPrice = this.route.snapshot.queryParamMap.get('totalPrice');
+    
+    // console.log('Transacción ID:', transactionId);
+    // console.log('Precio Total:', totalPrice);
+    
+    // Aquí puedes agregar lógica adicional si es necesario
+    // Pero si solo quieres mostrar el mensaje, no hace falta hacer más
   }
 
-  confirmPayment(): void {
-    if (this.token) {
-      this.checkoutService.capturePayPalOrder(this.token).subscribe(
-        (response) => {
-          // Aquí puedes manejar la respuesta de la confirmación del pago
-          console.log('Pago confirmado con éxito', response);
-        },
-        (error) => {
-          console.error('Error al confirmar el pago', error);
-        }
-      );
-    }
-  }
+
     goToHome(): void {
       this.router.navigate(['/']);
     }

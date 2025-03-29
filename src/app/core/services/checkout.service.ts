@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { OrderDetailsResponse } from '../models/order-details.model'; 
 
+interface OrderResponse {
+  orderId:string}
+  
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +14,7 @@ import { OrderDetailsResponse } from '../models/order-details.model';
 export class CheckoutService {
   
   private apiUrl = 'http://localhost:3000/api/orders';  // Ajusta la URL de la API a tu configuración
-
+  
   constructor(private http: HttpClient, private authService: AuthService) { }
   
   // Método para obtener la última dirección de envío del usuario
@@ -44,15 +47,6 @@ export class CheckoutService {
     return this.http.get(`http://localhost:3000/api/orders/address/${userId}`);
   }
 
-  createOrder(orderData: any) {
-    const token = localStorage.getItem('token'); // Obtener token
-  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}` // 🔥 Enviar token en los headers
-    });
-  
-    return this.http.post(`${this.apiUrl}/create`, orderData, { headers, withCredentials: true });
-  }
   getOrderDetails(orderId: number): Observable<OrderDetailsResponse> {
     return this.http.get<OrderDetailsResponse>(`${this.apiUrl}/order-details/${orderId}`, { withCredentials: true });
   }
@@ -75,11 +69,14 @@ export class CheckoutService {
       headers: { 'Content-Type': 'application/json' }
     });
   }
-
-  // 🔹 Capturar pago (GET en lugar de POST)
-  capturePayPalOrder(orderID: string): Observable<any> {
-    // Enviar el token en el cuerpo de la solicitud (en lugar de en la URL)
-    return this.http.post(`${this.apiUrl}/capture-order`, { token: orderID });
+  capturePayPalOrder(captureData: { orderID: any, token: any, user_id: any }): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/orders/capture-order', captureData, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
   
+  saveOrder(orderData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/save-order', orderData);
+  }
+
 }

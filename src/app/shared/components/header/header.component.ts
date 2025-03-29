@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -29,6 +29,10 @@ export class HeaderComponent {
     this.router.navigate(['/profile']);
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  clearSessionData(event: Event) {
+    this.authService.logout(); // Cierra sesión cuando la ventana se cierra
+  }
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/home']); // Redirigir después del logout

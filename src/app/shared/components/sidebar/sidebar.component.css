@@ -110,6 +110,20 @@
   
   @media (max-width: 768px) {
 
-
+    .sidebar-toggle {
+      position: fixed;
+      top: 37px;  /* Ajusta la posición */
+      left: 18px; /* Ajusta la posición */
+      z-index: 2000; /* El botón debe estar encima de la sidebar */
+      color: #ffffff;
+      border: none;
+      text-decoration: none;
+      font-size: 27px;
+      padding: 10px;
+      cursor: pointer;
+      background-color: transparent;
+      color: rgb(0, 0, 0);
+      mix-blend-mode: difference;
+    }
     
   }

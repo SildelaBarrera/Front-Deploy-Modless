@@ -1,6 +1,18 @@
-<body><div class="container">
-    <h2>CONTACTO</h2>
-    <form [formGroup]="contactoForm" (ngSubmit)="enviarFormulario()">
+<body>
+  <div class="container">
+    <div class="text1" >
+      <h2>CONTACTO</h2>
+      <h5>PARA CUALQUIER CONSULTA ACERCA DE NUESTROS PRODUCTOS NO DUDES EN CONTACTARNOS: contact&#64;modless.es</h5>
+      <h5> ¿TIENES UNA TIENDA Y QUIERES VENDER NUESTROS PRODUCTOS? </h5>
+      <h5> CONTACTANOS A TRAVÉS DE modless.official&#64;gmail.com. </h5>
+    </div>  
+    <div class="text2" >
+      <h2>CONTACTO</h2>
+      <h5>FOR ANY INQUIRIES ABOUT OUR PRODUCTS, FEEL FREE TO CONTACT US: contact&#64;modless.es</h5>
+      <h5> DO YOU HAVE A STORE AND WANT TO SELL OUR PRODUCTS? </h5>
+      <h5> CONTACT US A modless.official&#64;gmail.com. </h5>
+    </div>
+    <!-- <form [formGroup]="contactoForm" (ngSubmit)="enviarFormulario()">
       <input type="text" formControlName="nombre" placeholder="Nombre y apellidos">
       <div *ngIf="contactoForm.controls['nombre'].invalid && contactoForm.controls['nombre'].touched">
         <small>El nombre es obligatorio.</small>
@@ -19,7 +31,7 @@
       <button type="submit" [disabled]="contactoForm.invalid">Enviar</button>
     </form>
   
-    <p *ngIf="mensajeEnviado">{{ mensajeEnviado }}</p>
+    <p *ngIf="mensajeEnviado">{{ mensajeEnviado }}</p> -->
   </div>
 </body>
   
