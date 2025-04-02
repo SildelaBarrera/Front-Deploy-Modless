@@ -13,7 +13,8 @@ interface OrderResponse {
 
 export class CheckoutService {
   
-  private apiUrl = 'http://localhost:3000/api/orders';  // Ajusta la URL de la API a tu configuración
+  // private apiUrl = 'http://localhost:3000/api/orders';  // Ajusta la URL de la API a tu configuración
+  private apiUrl = 'http://modless.es/api/orders';
   
   constructor(private http: HttpClient, private authService: AuthService) { }
   

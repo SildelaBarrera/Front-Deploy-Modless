@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:3000/api/cart';  // Cambia según tu URL de backend
+  // private apiUrl = 'http://localhost:3000/api/cart';  // Cambia según tu URL de backend
+  private apiUrl = 'http://modless.es/api/cart';
 
   constructor(private http: HttpClient) {}
 

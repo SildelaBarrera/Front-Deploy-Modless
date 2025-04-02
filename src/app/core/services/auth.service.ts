@@ -8,7 +8,8 @@ import { Router } from '@angular/router'
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  // private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'http://modless.es/api/auth';
   private inactivityTimer: any;
 
   constructor(private http: HttpClient, private router:Router) {}

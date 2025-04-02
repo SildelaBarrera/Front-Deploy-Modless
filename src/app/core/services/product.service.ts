@@ -10,7 +10,8 @@ import { Product } from '../models/product.model';
 export class ProductService {
 
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/products';
+  // private apiUrl = 'http://localhost:3000/api/products';
+  private apiUrl = 'http://modless.es/api/products';
   private router = inject(Router)
 
   constructor() { }
