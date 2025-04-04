@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
 })
 export class AuthService {
   // private apiUrl = 'http://localhost:3000/api/auth';
-  private apiUrl = 'http://modless.es/api/auth';
+  private apiUrl = 'https://modless.es/api/auth';
   private inactivityTimer: any;
 
   constructor(private http: HttpClient, private router:Router) {}
@@ -26,7 +26,7 @@ export class AuthService {
   // Método para registrar un usuario
   register(userData: any) {
     console.log("📤 Enviando datos al backend:", userData);
-    return this.http.post('http://localhost:3000/api/auth/register', userData);
+    return this.http.post(`${this.apiUrl}/register`, userData);
   }
 
   verifyEmail(email: string, verificationCode: string): Observable<any> {

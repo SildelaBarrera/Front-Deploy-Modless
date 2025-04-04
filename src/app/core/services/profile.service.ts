@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProfileService {
   // private apiUrl = 'http://localhost:3000/api/profile';
-  private apiUrl = 'http://modless.es/api/profile';
+  private apiUrl = 'https://modless.es/api/profile';
 
   constructor(private http: HttpClient) { }
 
