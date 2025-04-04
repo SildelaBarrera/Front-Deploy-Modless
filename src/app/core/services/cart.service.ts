@@ -13,7 +13,8 @@ export class CartService {
 
   getCart(id_user: number, discountCode: string = ''): Observable<any> {
     
-    let url = `http://localhost:3000/api/cart/${id_user}`;
+    // let url = `http://localhost:3000/api/cart/${id_user}`;
+    let url = `${this.apiUrl}/${id_user}`
     console.log("URL del carrito:", url);
     if (discountCode) {
       url += `?discount_code=${discountCode}`;
@@ -31,7 +32,8 @@ export class CartService {
   }
 
   updateQuantity(id_cart: number, quantity: number): Observable<any> {
-    let url = `http://localhost:3000/api/cart/update/${id_cart}`
+    // let url = `http://localhost:3000/api/cart/update/${id_cart}`
+    let url = `${this.apiUrl}/${id_cart}`
     console.log("URL de actualización:", url); // Verificar en la consola
     return this.http.put<any>(url, { quantity });
   }

@@ -45,7 +45,8 @@ export class CheckoutService {
 }
 
   getAddress(userId: number): Observable<any> {
-    return this.http.get(`http://localhost:3000/api/orders/address/${userId}`);
+    // return this.http.get(`http://localhost:3000/api/orders/address/${userId}`);
+    return this.http.get(`${this.apiUrl}/address/${userId}`)
   }
 
   getOrderDetails(orderId: number): Observable<OrderDetailsResponse> {
@@ -66,12 +67,18 @@ export class CheckoutService {
   }
 
   createPayPalOrder(order: { totalPrice: number }) {
-    return this.http.post<any>('http://localhost:3000/api/orders/create-order', order, {
+    // return this.http.post<any>('http://localhost:3000/api/orders/create-order', order, {
+    //   headers: { 'Content-Type': 'application/json' }
+    // });
+    return this.http.post<any>(`${this.apiUrl}/create-order`, order, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
   capturePayPalOrder(captureData: { orderID: any, token: any, user_id: any }): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/api/orders/capture-order', captureData, {
+    // return this.http.post<any>('http://localhost:3000/api/orders/capture-order', captureData, {
+    //   headers: { 'Content-Type': 'application/json' }
+    // });
+    return this.http.post<any>(`${this.apiUrl}/capture-order`, captureData, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
