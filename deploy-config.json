@@ -1,0 +1,8 @@
+{
+    "host": "modless.es",
+    "port": 22,
+    "username": "root",
+    "privateKey": "C:/Users/Sil/.ssh/id_rsa",
+    "localPath": "./dist/modless-front/",
+    "remotePath": "/var/www/vhosts/modless.es/httpdocs/"
+  }

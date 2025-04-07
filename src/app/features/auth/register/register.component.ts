@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -74,5 +74,4 @@ export class RegisterComponent {
       }
     );
   }
-  
 }

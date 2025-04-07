@@ -40,7 +40,7 @@ export const routes: Routes = [
     {path: 'devolucion', component: DevolucionComponent},
     {path: 'contacto', component: ContactoComponent},
     {path: 'about', component: AboutComponent},
-    { path: 'success', component: SuccessComponent },
+    {path: 'success', component: SuccessComponent },
 
 
 
