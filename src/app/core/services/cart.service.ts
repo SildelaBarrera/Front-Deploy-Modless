@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../src/environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   // private apiUrl = 'http://localhost:3000/api/cart';  // Cambia según tu URL de backend
-  private apiUrl = 'https://modless.es/api/cart';
+  private apiUrl  = `${environment.apiUrl}/cart`;
 
   constructor(private http: HttpClient) {}
 
@@ -43,6 +44,6 @@ export class CartService {
   }
 
   clearCart(user_id: number) {
-    return this.http.delete(`/api/cart/clear/${user_id}`);
+    return this.http.delete(`${this.apiUrl}/clear/${user_id}`);
   }
 }

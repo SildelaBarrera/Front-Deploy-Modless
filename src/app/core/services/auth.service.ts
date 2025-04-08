@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router'
+import { environment } from '../../../../src/environments/environment.prod'
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class AuthService {
   // private apiUrl = 'http://localhost:3000/api/auth';
-  private apiUrl = 'https://modless.es/api/auth';
+  private apiUrl = `${environment.apiUrl}/auth`;
   private inactivityTimer: any;
 
   constructor(private http: HttpClient, private router:Router) {}

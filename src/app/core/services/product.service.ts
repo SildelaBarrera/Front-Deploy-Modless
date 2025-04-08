@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model'; 
+import { environment } from '../../../../src/environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProductService {
 
   private http = inject(HttpClient);
   // private apiUrl = 'http://localhost:3000/api/products';
-  private apiUrl = 'https://modless.es/api/products';
+  private apiUrl = `${environment.apiUrl}/products`;
   private router = inject(Router)
 
   constructor() { }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { OrderDetailsResponse } from '../models/order-details.model'; 
+import { environment } from '../../../../src/environments/environment.prod'
 
 interface OrderResponse {
   orderId:string}
@@ -14,7 +15,7 @@ interface OrderResponse {
 export class CheckoutService {
   
   // private apiUrl = 'http://localhost:3000/api/orders';  // Ajusta la URL de la API a tu configuración
-  private apiUrl = 'https://modless.es/api/orders';
+  private apiUrl  = `${environment.apiUrl}/orders`;
   
   constructor(private http: HttpClient, private authService: AuthService) { }
   

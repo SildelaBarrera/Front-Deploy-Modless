@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../src/environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
   // private apiUrl = 'http://localhost:3000/api/profile';
-  private apiUrl = 'https://modless.es/api/profile';
+  private apiUrl = `${environment.apiUrl}/profile`;
 
   constructor(private http: HttpClient) { }
 
