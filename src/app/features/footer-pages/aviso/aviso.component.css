@@ -36,8 +36,17 @@ h2, h3 {
   color: #000000;  /* Gris oscuro para los títulos */
   margin-bottom: 20px;
 }
-
+h2{
+  margin-top: 180px;
+}
 p {
   font-size: 1rem;
   color: #000000;  /* Gris más claro para el texto */
+}
+
+@media (max-width: 768px) {
+  
+  h2{
+    margin-top: 50px;
+  }
 }

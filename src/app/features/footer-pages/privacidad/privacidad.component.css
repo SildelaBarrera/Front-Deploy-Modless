@@ -14,6 +14,7 @@ body {
     "slnt" 0; 
     font-size: medium;
     margin-top:95px;
+   
 }
 
 
@@ -22,7 +23,6 @@ body {
   max-width: 960px;
   width: 80%;
   padding: 20px;
-  
 }
 
 /* Estilos de las secciones */
@@ -37,6 +37,9 @@ h2, h3 {
   font-weight: 600;
   color: #000000;  /* Gris oscuro para los títulos */
   margin-bottom: 20px;
+}
+h2{
+  margin-top: 180px;
 }
 
 p {
@@ -56,3 +59,9 @@ p {
       margin-bottom: 10px;
     }
  
+    
+    @media (max-width: 768px) {
+      h2{
+        margin-top: 70px;
+      }
+}
