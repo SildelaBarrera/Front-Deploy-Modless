@@ -25,16 +25,15 @@ html, body {
 
 @media (max-width: 1025px) {
     .landing-page {
-        background-image: url("/portada2.jpg");
-        background-size:contain;/* La imagen cubre todo el fondo */
-        background-repeat: repeat;
+        background-image: url("/portada.jpg");
+        background-size:cover;/* La imagen cubre todo el fondo */
     }
 }
 
 @media (max-width: 768px) {
 
     .landing-page {
-        background-image: url("/portada2.jpg");
+        background-image: url("/portada.jpg");
         background-size:350%;/* La imagen cubre todo el fondo */
     }
 }
