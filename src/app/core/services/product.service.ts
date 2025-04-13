@@ -3,7 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model'; 
-import { environment } from '../../../../src/environments/environment.prod'
+import { environment_prod } from '../../../../src/environments/environment.prod'
+import { environment } from '../../../../src/environments/environment'
 
 @Injectable({
   providedIn: 'root'

@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { OrderDetailsResponse } from '../models/order-details.model'; 
-import { environment } from '../../../../src/environments/environment.prod'
+import { environment_prod } from '../../../../src/environments/environment.prod'
+import { environment } from '../../../../src/environments/environment'
 
 interface OrderResponse {
   orderId:string}

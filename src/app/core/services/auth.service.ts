@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router'
-import { environment } from '../../../../src/environments/environment.prod'
+import { environment_prod } from '../../../../src/environments/environment.prod'
+import { environment } from '../../../../src/environments/environment'
 
 
 @Injectable({
