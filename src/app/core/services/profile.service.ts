@@ -9,7 +9,7 @@ import { environment } from '../../../../src/environments/environment'
 })
 export class ProfileService {
   // private apiUrl = 'http://localhost:3000/api/profile';
-  private apiUrl = `${environment.apiUrl}/profile`;
+  private apiUrl = `${environment_prod.apiUrl}/profile`;
 
   constructor(private http: HttpClient) { }
 

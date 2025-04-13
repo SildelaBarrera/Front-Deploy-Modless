@@ -9,7 +9,7 @@ import { environment } from '../../../../src/environments/environment'
 })
 export class CartService {
   // private apiUrl = 'http://localhost:3000/api/cart';  // Cambia según tu URL de backend
-  private apiUrl  = `${environment.apiUrl}/cart`;
+  private apiUrl  = `${environment_prod.apiUrl}/cart`;
 
   constructor(private http: HttpClient) {}
 

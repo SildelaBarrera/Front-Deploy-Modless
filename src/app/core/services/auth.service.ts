@@ -11,7 +11,7 @@ import { environment } from '../../../../src/environments/environment'
 })
 export class AuthService {
   // private apiUrl = 'http://localhost:3000/api/auth';
-  private apiUrl = `${environment.apiUrl}/auth`;
+  private apiUrl = `${environment_prod.apiUrl}/auth`;
   private inactivityTimer: any;
 
   constructor(private http: HttpClient, private router:Router) {}

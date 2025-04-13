@@ -16,7 +16,7 @@ interface OrderResponse {
 export class CheckoutService {
   
   // private apiUrl = 'http://localhost:3000/api/orders';  // Ajusta la URL de la API a tu configuración
-  private apiUrl  = `${environment.apiUrl}/orders`;
+  private apiUrl  = `${environment_prod.apiUrl}/orders`;
   
   constructor(private http: HttpClient, private authService: AuthService) { }
   
